@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://example.com/background-image.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding-top: 100px; /* Adjust as needed */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .order-details {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .order-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Confirmed</h1>
+        <p>Thank you for your order!</p>
+        <div class="order-details">
+            <h2>Order Details:</h2>
+            <ul id="order-list">
+                <!-- JavaScript will populate this list -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        // Retrieve cart items from local storage
+        const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+
+        // Function to display order details
+        function displayOrderDetails() {
+            const orderList = document.getElementById('order-list');
+            cartItems.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('order-item');
+                listItem.textContent = `${item.quantity} x ${item.name}`;
+                orderList.appendChild(listItem);
+            });
+        }
+
+        // Display order details when the page loads
+        window.onload = function() {
+            displayOrderDetails();
+        };
+        // Inside the event listener for the "checkout-btn"
+if (event.target.id === "checkout-btn") {
+    // Pass cartItems to the order confirmation page
+    const cartItemsJSON = JSON.stringify(cartItems);
+    sessionStorage.setItem('cartItems', cartItemsJSON);
+    window.location.href = 'order_confirmation.html';
+}
+
+
+
+    </script>
+</body>
+</html>
+
