@@ -6,10 +6,52 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            margin: 20px;
+            margin: 0;
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+        }
+
+        nav {
+            background-color: #ff80ab;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        li:last-child {
+            margin-right: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #ff6090;
+        }
+
+        header {
+            background-color: #ff80ab;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
         }
 
         #welcome-section {
@@ -18,11 +60,13 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
         }
 
         #location-section {
-            margin-top: 20px;
             text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
     </style>
     <title>Meenah's Food House - Home</title>
@@ -30,26 +74,23 @@
 <body>
     <header>
         <h1><a href="main.html">Meenah's Food House</a></h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="order_form.html">Order</a></li>
-                <li><a href="FAQpage">FAQ Page</a</li>
-                <li><a href="index.html">Owner's Bio</a></li>
-            </ul>
-        </nav>
     </header>
 
+    <nav>
+        <ul>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="order_form.html">Order</a></li>
+            <li><a href="FAQpage.html">FAQ Page</a></li>
+            <li><a href="index.html">Owner's Bio</a></li>
+        </ul>
+    </nav>
+
     <main>
-        <body>
-            <div id="welcome-section">
-                <img src="images/yangskitchen_home copy.jpg"
-                <h1>Welcome to Meenah's Food House!</h1>
-                <p>Where culinary excellence meets a symphony of flavors! At Meenah's, we believe in crafting unforgettable dining experiences that tantalize your taste buds and leave you craving for more. Our diverse menu features a fusion of delectable dishes meticulously curated to satisfy every palate. From mouthwatering appetizers to sumptuous main courses, each dish is a masterpiece that reflects our commitment to quality ingredients and culinary creativity. Join us on a gastronomic journey where passion meets plate, and indulge in the delightful harmony of flavors at Meenah's Food House.</p>
-            </div>
-        </body>
+        <div id="welcome-section">
+            <img src="https://github.com/CIS-Spring-2024/cis2336-assignment4-haogunjo/blob/main/images/yangskitchen_home%20copy.jpg?raw=true">
+            <h1>Welcome to Meenah's Food House!</h1>
+            <p>Where culinary excellence meets a symphony of flavors! At Meenah's, we believe in crafting unforgettable dining experiences that tantalize your taste buds and leave you craving for more. Our diverse menu features a fusion of delectable dishes meticulously curated to satisfy every palate. From mouthwatering appetizers to sumptuous main courses, each dish is a masterpiece that reflects our commitment to quality ingredients and culinary creativity. Join us on a gastronomic journey where passion meets plate, and indulge in the delightful harmony of flavors at Meenah's Food House.</p>
+        </div>
 
         <div id="location-section">
             <h2>Location</h2>

@@ -1,17 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meenahs's Food house</title>
+    <title>Meenah's Food House</title>
     <style>
-       body {
+        /* Your CSS styles here */
+        body {
             font-family: cursive;
             margin: 0;
             padding: 0;
             background-color: #fefefe;
-            background-image:url("images/backgroundresturant.jpeg");
+            /* Your background image styles here */
+            background-image:url("https://github.com/CIS-Spring-2024/cis2336-assignment4-haogunjo/blob/main/images/backgroundresturant.jpeg?raw=true");
             background-size: cover; /* Ensures the background image covers the entire viewport */
             background-position: center; /* Centers the background image */
         }
@@ -99,7 +100,13 @@
             z-index: 1; /* Ensure the cart is above other elements */
             margin-right: 10px; /* Smaller margin */
         }
-    </style>
+        .menu-item img {
+    width: 100%;
+    max-height: 150px; /* Adjust the maximum height as needed */
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+</style>
 </head>
 <body>
     <header>
@@ -109,36 +116,99 @@
         <section id="breakfast" class="menu-section">
             <h2>Breakfast</h2>
             <div class="menu" id="breakfast-menu">
+                <!-- Menu items with images -->
                 <div class="menu-item">
-                    <img src="images/oreopancake.jpg" alt="Special Oreo Pancakes">
-                      <div class="menu-item-content">
+                    <img src="images/specialoreopancakes.jpg" alt="Special Oreo Pancakes">
+                    <div class="menu-item-content">
                         <h3>Special Oreo Pancakes</h3>
                         <p>Price: $5.99</p>
                         <button class="add-to-cart-btn" data-name="Special Oreo Pancakes" data-price="5.99">Add to Cart</button>
                     </div>
                 </div>
-                <img src ="images/Shepherdspie.jpg" alt="Shepherds pie">
-                <div class
+                <div class="menu-item">
+                    <img src="images/turkeybacon.jpg" alt="Turkey Bacon">
+                    <div class="menu-item-content">
+                        <h3>Turkey Bacon</h3>
+                        <p>Price: $7.50</p>
+                        <button class="add-to-cart-btn" data-name="Turkey Bacon" data-price="7.50">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="images/freshfruit.jpg" alt="Fresh Fruit">
+                    <div class="menu-item-content">
+                        <h3>Fresh Fruit</h3>
+                        <p>Price: $4.99</p>
+                        <button class="add-to-cart-btn" data-name="Fresh Fruit" data-price="4.99">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- Add other breakfast items similarly -->
             </div>
         </section>
         <section id="lunch" class="menu-section">
             <h2>Lunch</h2>
             <div class="menu" id="lunch-menu">
-                <!-- Add lunch menu items here -->
+                <!-- Menu items with images -->
+                <!-- Add lunch items with images here -->
+                <div class="menu-item">
+                    <img src="images/chickenburger.jpg" alt="Chicken Burger">
+                    <div class="menu-item-content">
+                        <h3>Chicken Burger</h3>
+                        <p>Price: $8.99</p>
+                        <button class="add-to-cart-btn" data-name="Chicken Burger" data-price="8.99">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="images/tunapastasalad.jpg" alt="Tuna Pasta Salad">
+                    <div class="menu-item-content">
+                        <h3>Tuna Pasta Salad</h3>
+                        <p>Price: $6.99</p>
+                        <button class="add-to-cart-btn" data-name="Tuna Pasta Salad" data-price="6.99">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="images/shepherdspie.jpg" alt="Shepherd's Pie">
+                    <div class="menu-item-content">
+                        <h3>Shepherd's Pie</h3>
+                        <p>Price: $5.99</p>
+                        <button class="add-to-cart-btn" data-name="Shepherd's Pie" data-price="5.99">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </section>
         <section id="dinner" class="menu-section">
             <h2>Dinner</h2>
             <div class="menu" id="dinner-menu">
-                <!-- Add dinner menu items here -->
+                <!-- Menu items with images -->
+                <!-- Add dinner items with images here -->
+                <div class="menu-item">
+                    <img src="images/chinesefriedrice.jpg" alt="Chinese Fried Rice">
+                    <div class="menu-item-content">
+                        <h3>Chinese Fried Rice</h3>
+                        <p>Price: $10.99</p>
+                        <button class="add-to-cart-btn" data-name="Chinese Fried Rice" data-price="10.99">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="images/chickenwings.jpg" alt="Chicken Wings">
+                    <div class="menu-item-content">
+                        <h3>Chicken Wings</h3>
+                        <p>Price: $12.99</p>
+                        <button class="add-to-cart-btn" data-name="Chicken Wings" data-price="12.99">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="images/vegetablespringroll.jpg" alt="Vegetable Spring Roll">
+                    <div class="menu-item-content">
+                        <h3>Vegetable Spring Roll</h3>
+                        <p>Price: $9.99</p>
+                        <button class="add-to-cart-btn" data-name="Vegetable Spring Roll" data-price="9.99">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
     <aside id="cart">
         <h2>Cart</h2>
-        <ul id="cart-items"></ul>
-        <p>Total: <span id="total">$0.00</span></p>
-        <button id="checkout-btn">Checkout</button>
     </aside>
     <script>
         // JavaScript code here
@@ -217,7 +287,7 @@
             }
         
             if (event.target.id === "checkout-btn") {
-                
+                // Checkout logic here
                 console.log("Checkout clicked!");
             }
         });
@@ -262,10 +332,8 @@
             // Other code...
         
             if (event.target.id === "checkout-btn") {
-                
                 // Image i want displayed, 
                 alert("Order Accepted!");
-             
                 cartItems.length = 0;
                 updateCart();
             }

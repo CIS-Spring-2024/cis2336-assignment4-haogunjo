@@ -2,60 +2,58 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// Middleware to parse JSON and URL-encoded form data
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public')); // Serve static files like HTML, CSS, and images
 
-// Routes
+
+
+// Route to handle GET request for the order form page
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/order_form.html');
+    res.sendFile(path.join(__dirname, 'order-form.html'));
 });
 
-app.post('/process_order', (req, res) => {
-    // Process form data
-    const { name, email, breakfast, breakfastQuantity, lunch, lunchQuantity, dinner, dinnerQuantity } = req.body;
-
-    // Validate form data
-    if (!name || !email || !breakfast || !breakfastQuantity || !lunch || !lunchQuantity || !dinner || !dinnerQuantity) {
-        return res.status(400).send('Please fill out all fields.');
+// Route to handle POST request for processing form data
+app.post('/process-order', (req, res) => {
+    // Process form data and calculate total amount
+    const { itemName, quantity } = req.body;
+    const itemPrice = getItemPrice(itemName); // You need to implement this function
+    const totalAmount = calculateTotalAmount(itemPrice, quantity); // You need to implement this function
+    
+    // Check for validation
+    if (!itemPrice || !quantity || quantity < 1) {
+        res.status(400).send('Invalid form data');
+        return;
     }
 
-    // Convert quantity strings to numbers
-    const breakfastQty = parseInt(breakfastQuantity);
-    const lunchQty = parseInt(lunchQuantity);
-    const dinnerQty = parseInt(dinnerQuantity);
-
-    // Validate quantities
-    if (isNaN(breakfastQty) || isNaN(lunchQty) || isNaN(dinnerQty) ||
-        breakfastQty < 1 || lunchQty < 1 || dinnerQty < 1 ||
-        breakfastQty > 10 || lunchQty > 10 || dinnerQty > 10) {
-        return res.status(400).send('Invalid quantity values.');
-    }
-
-    // Calculate total amount
-    const totalPrice = (breakfastQty * getItemPrice(breakfast)) +
-                       (lunchQty * getItemPrice(lunch)) +
-                       (dinnerQty * getItemPrice(dinner));
-
-    // Render order confirmation page with total amount
-    res.send(`Order confirmed! Total amount: $${totalPrice.toFixed(2)}`);
+    // Respond with total amount
+    res.send(`Total amount for ${quantity} ${itemName}(s) is $${totalAmount.toFixed(2)}`);
 });
 
-// Helper function to get item price
-function getItemPrice(item) {
-    const priceRegex = /\$([\d.]+)/;
-    const matches = item.match(priceRegex);
-    if (matches && matches.length > 1) {
-        return parseFloat(matches[1]);
-    }
-    return 0;
-}
-
-// Start server
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+// Function to get item price 
+function getItemPrice(itemName) {
+   
+    const itemPrices = {
+        'Special Oreo Pancakes': 5.99,
+        'Turkey Bacon': 7.50,
+        'Fresh Fruit': 4.99
+        // i need to add more items as needed
+    };
+    return itemPrices[itemName];
+}
+
+// Function to calculate total amount
+function calculateTotalAmount(price, quantity) {
+    return price * quantity;
+}
+
