@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meenahs's Food house</title>
+    <style>
+       body {
+            font-family: cursive;
+            margin: 0;
+            padding: 0;
+            background-color: #fefefe;
+            background-image:url("images/backgroundresturant.jpeg");
+            background-size: cover; /* Ensures the background image covers the entire viewport */
+            background-position: center; /* Centers the background image */
+        }
+
+        header {
+            background-color: #ff5f6d;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+            position: relative;
+        }
+
+        .menu-section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #343a40;
+            text-transform: uppercase;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .menu-item-content {
+            padding: 20px;
+        }
+
+        .menu-item h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .menu-item p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 1.2rem;
+        }
+
+        /* Cart Styles */
+        #cart {
+            background-color: #ff5f6d;
+            color: white;
+            padding: 10px; /* Smaller padding */
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 150px; /* Smaller width */
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1; /* Ensure the cart is above other elements */
+            margin-right: 10px; /* Smaller margin */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meenah's Food House</h1>
+    </header>
+    <main>
+        <section id="breakfast" class="menu-section">
+            <h2>Breakfast</h2>
+            <div class="menu" id="breakfast-menu">
+                <div class="menu-item">
+                    <img src="images/oreopancake.jpg" alt="Special Oreo Pancakes">
+                      <div class="menu-item-content">
+                        <h3>Special Oreo Pancakes</h3>
+                        <p>Price: $5.99</p>
+                        <button class="add-to-cart-btn" data-name="Special Oreo Pancakes" data-price="5.99">Add to Cart</button>
+                    </div>
+                </div>
+                <img src ="images/Shepherdspie.jpg" alt="Shepherds pie">
+                <div class
+            </div>
+        </section>
+        <section id="lunch" class="menu-section">
+            <h2>Lunch</h2>
+            <div class="menu" id="lunch-menu">
+                <!-- Add lunch menu items here -->
+            </div>
+        </section>
+        <section id="dinner" class="menu-section">
+            <h2>Dinner</h2>
+            <div class="menu" id="dinner-menu">
+                <!-- Add dinner menu items here -->
+            </div>
+        </section>
+    </main>
+    <aside id="cart">
+        <h2>Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: <span id="total">$0.00</span></p>
+        <button id="checkout-btn">Checkout</button>
+    </aside>
+    <script>
+        // JavaScript code here
+        const menuData = {
+            breakfast: [
+                { name: "Special Oreo Pancakes", price: 5.99 },
+                { name: "Turkey Bacon", price: 7.50 },
+                { name: "Fresh Fruit", price: 4.99 }
+            ],
+            lunch: [
+                { name: "Chicken Burger", price: 8.99 },
+                { name: "Tuna pasta Salad", price: 6.99 },
+                { name: "Shepherds Pie", price: 5.99 }
+            ],
+            dinner: [
+                { name: "Chinese Fried rice", price: 10.99 },
+                { name: "Chicken Wings", price: 12.99 },
+                { name: "Vegetable Springroll", price: 9.99 }
+            ]
+        };
+        
+        const cartItems = [];
+        
+        // Function to display menu items for a given section
+        function displayMenu(section) {
+            const menuSection = document.getElementById(section + "-menu");
+            menuSection.innerHTML = "";
+            menuData[section].forEach(item => {
+                const menuItem = document.createElement("div");
+                menuItem.classList.add("menu-item");
+                menuItem.innerHTML = `
+                    <img src="images/${item.name.replace(/\s/g, '').toLowerCase()}.jpeg" alt="${item.name}">
+                    <div class="menu-item-content">
+                        <h3>${item.name}</h3>
+                        <p>Price: $${item.price.toFixed(2)}</p>
+                        <button class="add-to-cart-btn" data-name="${item.name}" data-price="${item.price.toFixed(2)}">Add to Cart</button>
+                    </div>
+                `;
+                menuSection.appendChild(menuItem);
+            });
+        }
+        
+        // Display menu for each section on page load
+        window.addEventListener("DOMContentLoaded", () => {
+            displayMenu("breakfast");
+            displayMenu("lunch");
+            displayMenu("dinner");
+        });
+        
+        
+        const cartItemsElement = document.getElementById("cart-items");
+        const totalElement = document.getElementById("total");
+        const checkoutBtn = document.getElementById("checkout-btn");
+        
+        document.addEventListener("click", function(event) {
+            if (event.target.classList.contains("add-to-cart-btn")) {
+                const name = event.target.getAttribute("data-name");
+                const price = parseFloat(event.target.getAttribute("data-price"));
+        
+                let existingItem = null;
+                for (const item of cartItems) {
+                    if (item.name === name) {
+                        existingItem = item;
+                        break;
+                    }
+                }
+        
+                if (existingItem) {
+                    existingItem.quantity++;
+                    existingItem.total = existingItem.quantity * price;
+                } else {
+                    cartItems.push({ name, price, quantity: 1, total: price });
+                }
+        
+                updateCart();
+            }
+        
+            if (event.target.id === "checkout-btn") {
+                
+                console.log("Checkout clicked!");
+            }
+        });
+        
+        function updateCart() {
+            cartItemsElement.innerHTML = "";
+            let total = 0;
+            for (const item of cartItems) {
+                const cartItem = document.createElement("li");
+                cartItem.classList.add("cart-item");
+                cartItem.innerHTML = `
+                    <div class="cart-item-info">
+                        <p>${item.name} - $${item.price.toFixed(2)} x</p>
+                        <div class="cart-item-quantity">
+                            <input type="number" min="1" value="${item.quantity}" data-name="${item.name}" data-price="${item.price.toFixed(2)}">
+                        </div>
+                        <p class="cart-item-total">$${item.total.toFixed(2)}</p>
+                    </div>
+                `;
+                cartItemsElement.appendChild(cartItem);
+                total += item.total;
+            }
+            totalElement.textContent = `$${total.toFixed(2)}`;
+        }
+        
+        cartItemsElement.addEventListener("input", function(event) {
+            if (event.target.tagName === "INPUT") {
+                const name = event.target.getAttribute("data-name");
+                const price = parseFloat(event.target.getAttribute("data-price"));
+                const quantity = parseInt(event.target.value);
+        
+                const itemIndex = cartItems.findIndex(item => item.name === name);
+                if (itemIndex !== -1) {
+                    cartItems[itemIndex].quantity = quantity;
+                    cartItems[itemIndex].total = price * quantity;
+                }
+        
+                updateCart();
+            }
+        });
+        document.addEventListener("click", function(event) {
+            // Other code...
+        
+            if (event.target.id === "checkout-btn") {
+                
+                // Image i want displayed, 
+                alert("Order Accepted!");
+             
+                cartItems.length = 0;
+                updateCart();
+            }
+        });
+    </script>
+</body>
+</html>

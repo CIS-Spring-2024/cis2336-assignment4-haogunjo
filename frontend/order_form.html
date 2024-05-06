@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <style>
+        /* Embedded CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image:url('images/background12.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .order-form {
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+            transition: transform 0.3s ease;
+        }
+
+        .order-form:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .form-group:hover {
+            transform: translateY(-3px);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: #555;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #007bff;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        select {
+            height: 40px;
+        }
+
+        /* Additional styles */
+    </style>
+</head>
+<body>
+
+<div class="order-form">
+    <h2 style="text-align: center; color: #333;">Order Form</h2>
+
+    <form id="orderForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="breakfast">Breakfast:</label>
+            <select id="breakfast" name="breakfast">
+                <option value="">Select an item...</option>
+                <option value="Special Oreo Pancakes">Special Oreo Pancakes - $5.99</option>
+                <option value="Turkey Bacon">Turkey Bacon - $7.50</option>
+                <option value="Fresh Fruit">Fresh Fruit - $4.99</option>
+            </select>
+            <input type="number" id="breakfastQuantity" name="breakfastQuantity" min="1" max="10" placeholder="Quantity">
+        </div>
+        
+        <div class="form-group">
+            <label for="lunch">Lunch:</label>
+            <select id="lunch" name="lunch">
+                <option value="">Select an item...</option>
+                <option value="Chicken Burger">Chicken Burger - $8.99</option>
+                <option value="Tuna pasta Salad">Tuna pasta Salad - $6.99</option>
+                <option value="Shepherds Pie">Shepherds Pie - $5.99</option>
+            </select>
+            <input type="number" id="lunchQuantity" name="lunchQuantity" min="1" max="10" placeholder="Quantity">
+        </div>
+        
+        <div class="form-group">
+            <label for="dinner">Dinner:</label>
+            <select id="dinner" name="dinner">
+                <option value="">Select an item...</option>
+                <option value="Chinese Fried rice">Chinese Fried rice - $10.99</option>
+                <option value="Chicken Wings">Chicken Wings - $12.99</option>
+                <option value="Vegetable Springroll">Vegetable Springroll - $9.99</option>
+            </select>
+            <input type="number" id="dinnerQuantity" name="dinnerQuantity" min="1" max="10" placeholder="Quantity">
+        </div>
+        
+        <button type="submit">Submit Order</button>
+    </form>
+</div>
+
+<script src="javascript/script.js"></script> 
+
+</body>
+</html>
