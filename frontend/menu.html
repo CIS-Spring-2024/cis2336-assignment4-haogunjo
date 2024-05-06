@@ -333,14 +333,5 @@
             updateCart();
         }
     });
-   ;// Inside the event listener for the "checkout-btn"
-if (event.target.id === "checkout-btn") {
-    // Pass cartItems to the order confirmation page
-    const cartItemsJSON = JSON.stringify(cartItems);
-    sessionStorage.setItem('cartItems', cartItemsJSON);
-    window.location.href = 'order_confirmation.html';
-}
-
-
-
+  
 </script>

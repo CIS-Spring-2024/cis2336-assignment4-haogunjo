@@ -59,9 +59,7 @@
     </div>
     <script>
         // Retrieve cart items from local storage
-        const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-
-        // Function to display order details
+   // Function to display order details
         function displayOrderDetails() {
             const orderList = document.getElementById('order-list');
             cartItems.forEach(item => {
